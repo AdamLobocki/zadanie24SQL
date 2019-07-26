@@ -39,7 +39,11 @@ where stanowisko = 'dyrektor';
 
 7. Usuwa najmłodszego pracownika
 
-delete  from pracownik order by data_urodzenia;
+delete  from pracownik
+WHERE data_urodzenia IN (
+Select  MIN(data_urodzenia) as a from (
+select distinct data_urodzenia pracownik)
+as b);
 
 8. Usuwa tabelę pracownik
 
