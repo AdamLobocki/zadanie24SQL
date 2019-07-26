@@ -28,10 +28,7 @@ WHERE stanowisko = 'dyrektor';
 5. Pobiera pracowników, którzy mają co najmniej 30 lat
 
 select * from pracownik
-where data_urodzenia < '1990-07-24';   //chyba nie tak
-
-select * from pracownik
-WHERE DATEDIFF(EXTRACT(year from data_urodzenia),EXTRACT(year from CURDATE())) > 30 ; // to nie działa
+WHERE EXTRACT(year from NOW()) - EXTRACT(year from data_urodzenia)  > 30 ;
 
 
 6. Zwiększa wypłatę pracowników na wybranym stanowisku o 10%
@@ -101,7 +98,7 @@ JOIN stanowisko s ON p.stanowisko_id = s.id;
 
 SELECT SUM(wypłata) FROM pracownik p
 JOIN stanowisko s ON p.stanowisko_id = s.id
-WHERE p.stanowisko_id = 1;
+
 
 15. Pobiera pracowników mieszkających w lokalizacji z kodem pocztowym 90210 (albo innym, który będzie miał sens dla Twoich danych testowych)
 
